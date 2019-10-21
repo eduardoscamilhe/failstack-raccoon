@@ -1,9 +1,6 @@
-import 'package:failstack/android/widget/button.widget.dart';
-import 'package:failstack/android/widget/input-container.dart';
+import 'package:failstack/android/widget/drawer.widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../drawer.widget.dart';
 
 class AccessoryPage extends StatelessWidget {
   final _formKey = GlobalKey<FormState>();

@@ -1,4 +1,4 @@
-import 'package:failstack/android/pages/drawer.widget.dart';
+import 'package:failstack/android/widget/drawer.widget.dart';
 import 'package:flutter/material.dart';
 
 class AboutPage extends StatelessWidget {
