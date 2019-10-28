@@ -22,19 +22,19 @@ class Button extends StatelessWidget {
         borderRadius: BorderRadius.all(
           Radius.circular(60),
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.red.withOpacity(0.8),
-            blurRadius: 0.8,
-            offset: Offset(-2.0, 5.0),
-          )
-        ],
+        // boxShadow: [
+        //   BoxShadow(
+        //     color: Colors.red.withOpacity(0.8),
+        //     blurRadius: 0.8,
+        //     offset: Offset(-2.0, 5.0),
+        //   )
+        // ],
       ),
       width: 200,
       child: FlatButton(
         child: Text(
           text,
-          style: TextStyle(color: Colors.red, fontSize: 20),
+          style: TextStyle(color: Colors.cyan, fontSize: 20),
         ),
         onPressed: func,
         // () {

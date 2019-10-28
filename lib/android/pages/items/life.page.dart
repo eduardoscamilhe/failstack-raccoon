@@ -1,5 +1,5 @@
 import 'package:failstack/android/pages/entities/armor.dart';
-import 'package:failstack/android/pages/entities/weapon.dart';
+import 'package:failstack/android/pages/entities/life.dart';
 import 'package:failstack/android/widget/button.widget.dart';
 import 'package:failstack/android/widget/drawer.widget.dart';
 
@@ -8,30 +8,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
 
-class WeaponPage extends StatefulWidget {
+class LifePage extends StatefulWidget {
   @override
-  _WeaponPageState createState() => _WeaponPageState();
+  _LifePageState createState() => _LifePageState();
 }
 
-class _WeaponPageState extends State<WeaponPage> {
+class _LifePageState extends State<LifePage> {
   final _formKey = GlobalKey<FormState>();
-  String _fsSelected = '+8';
+  String _fsSelected = '+1';
   var percent = '0%';
   final _keyPercent = GlobalKey<FormState>();
   var arrFails = [
-    '+8',
-    '+9',
-    '+10',
-    '+11',
-    '+12',
-    '+13',
-    '+14',
-    '+15',
-    'PRI',
-    'DUO',
-    'TRI',
-    'TET',
-    'PEN'
+    '+ 1',
+    '+ 2',
+    '+ 3',
+    '+ 4',
+    '+ 5',
   ];
   var _failStackCtrl = new MaskedTextController(mask: '000');
 
@@ -39,7 +31,7 @@ class _WeaponPageState extends State<WeaponPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Weapon"),
+        title: Text("Skill Clothes"),
       ),
       drawer: DrawerWidget(),
       body: Container(
@@ -48,7 +40,7 @@ class _WeaponPageState extends State<WeaponPage> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             stops: [0, 1],
-            colors: [Colors.cyan, Colors.red.withOpacity(0.8)],
+            colors: [Colors.cyan, Colors.green],
           ),
         ),
         child: Form(
@@ -107,13 +99,12 @@ class _WeaponPageState extends State<WeaponPage> {
                             elevation: 16,
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: 26,
                               fontWeight: FontWeight.w400,
                             ),
-                            underline: Container(
-                              height: 0,
-                              color: Colors.black,
-                            ),
+                            // underline: Container(
+                            //   height: 2,
+                            //   color: Colors.black,
+                            // ),
                             onChanged: (String newValue) {
                               setState(() {
                                 _fsSelected = newValue;
@@ -176,19 +167,12 @@ class _WeaponPageState extends State<WeaponPage> {
 
   void _calculate() {
     var arrSelected = [''];
-    if (_fsSelected.toUpperCase() == '+8') arrSelected = Weapon().arrEight;
-    if (_fsSelected.toUpperCase() == '+9') arrSelected = Weapon().arrNine;
-    if (_fsSelected.toUpperCase() == '+10') arrSelected = Weapon().arrTen;
-    if (_fsSelected.toUpperCase() == '+11') arrSelected = Weapon().arrEleven;
-    if (_fsSelected.toUpperCase() == '+12') arrSelected = Weapon().arrTwelve;
-    if (_fsSelected.toUpperCase() == '+13') arrSelected = Weapon().arrThirteen;
-    if (_fsSelected.toUpperCase() == '+14') arrSelected = Weapon().arrFourteen;
-    if (_fsSelected.toUpperCase() == '+15') arrSelected = Weapon().arrFifteen;
-    if (_fsSelected.toUpperCase() == 'PRI') arrSelected = Weapon().arrPri;
-    if (_fsSelected.toUpperCase() == 'DUO') arrSelected = Weapon().arrDuo;
-    if (_fsSelected.toUpperCase() == 'TRI') arrSelected = Weapon().arrTri;
-    if (_fsSelected.toUpperCase() == 'TET') arrSelected = Weapon().arrTet;
-    if (_fsSelected.toUpperCase() == 'PEN') arrSelected = Weapon().arrPen;
+
+    if (_fsSelected.toUpperCase() == '+1') arrSelected = Life().arrOne;
+    if (_fsSelected.toUpperCase() == '+2') arrSelected = Life().arrTwo;
+    if (_fsSelected.toUpperCase() == '+3') arrSelected = Life().arrTree;
+    if (_fsSelected.toUpperCase() == '+4') arrSelected = Life().arrFour;
+    if (_fsSelected.toUpperCase() == '+4') arrSelected = Life().arrFive;
 
     setState(() {
       var index =

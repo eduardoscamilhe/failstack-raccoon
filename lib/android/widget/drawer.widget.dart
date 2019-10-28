@@ -73,13 +73,6 @@ class _DrawerWidgetState extends State<DrawerWidget> {
           ),
           new Divider(),
           new ListTile(
-              title: new Text("Home"),
-              trailing: new Icon(Icons.info),
-              onTap: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).pushNamed('/Home');
-              }),
-          new ListTile(
               title: new Text("Armor"),
               trailing: new Icon(Icons.add_circle_outline),
               onTap: () {
@@ -100,6 +93,20 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 Navigator.of(context).pop();
                 Navigator.of(context).pushNamed('/Accessory');
               }),
+          new ListTile(
+              title: new Text("Skill Clothes"),
+              trailing: new Icon(Icons.add_circle_outline),
+              onTap: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pushNamed('/Life');
+              }),
+          // new ListTile(
+          //     title: new Text("About"),
+          //     trailing: new Icon(Icons.info),
+          //     onTap: () {
+          //       Navigator.of(context).pop();
+          //       Navigator.of(context).pushNamed('/About');
+          //     }),
         ],
       ),
     );

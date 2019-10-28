@@ -1,8 +1,11 @@
+import 'package:failstack/android/pages/entities/armor.dart';
 import 'package:failstack/android/widget/button.widget.dart';
 import 'package:failstack/android/widget/drawer.widget.dart';
+
 import 'package:failstack/android/widget/input-container.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_masked_text/flutter_masked_text.dart';
 
 class ArmorPage extends StatefulWidget {
   @override
@@ -11,20 +14,27 @@ class ArmorPage extends StatefulWidget {
 
 class _ArmorPageState extends State<ArmorPage> {
   final _formKey = GlobalKey<FormState>();
-
-  int selectedRadio;
-  @override
-  void initState() {
-    selectedRadio = 0;
-  }
-
-  setSelectedRadio(int val) {
-    setState(() {
-      selectedRadio = val;
-    });
-  }
-
-  var _failstack = new TextEditingController();
+  String _fsSelected = '+6';
+  var percent = '0%';
+  final _keyPercent = GlobalKey<FormState>();
+  var arrFails = [
+    '+ 6',
+    '+ 7',
+    '+ 8',
+    '+ 9',
+    '+ 10',
+    '+ 11',
+    '+ 12',
+    '+ 13',
+    '+ 14',
+    '+ 15',
+    'PRI',
+    'DUO',
+    'TRI',
+    'TET',
+    'PEN'
+  ];
+  var _failStackCtrl = new MaskedTextController(mask: '000');
 
   @override
   Widget build(BuildContext context) {
@@ -39,48 +49,89 @@ class _ArmorPageState extends State<ArmorPage> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             stops: [0, 1],
-            colors: [Colors.red, Colors.black],
+            colors: [Colors.cyan, Colors.purple.withOpacity(0.8)],
           ),
         ),
         child: Form(
           child: ListView(
             children: <Widget>[
-              ButtonBar(
-                alignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  ListTile(
-                    title: const Text('+6'),
-                    leading: Radio(
-                      value: 6,
-                      groupValue: selectedRadio,
-                      activeColor: Colors.green,
-                      onChanged: (val) {
-                        setSelectedRadio(val);
-                      },
-                    ),
-                  ),
-                  ListTile(
-                    title: const Text('+7'),
-                    leading: Radio(
-                      value: 7,
-                      groupValue: selectedRadio,
-                      activeColor: Colors.green,
-                      onChanged: (val) {
-                        setSelectedRadio(val);
-                      },
-                    ),
-                  ),
-                ],
+              SizedBox(
+                height: 30,
               ),
               Container(
-                margin: EdgeInsets.only(
-                  left: 20,
-                  right: 20,
-                ),
                 height: 70,
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    InputContainer(),
+                    RichText(
+                      text: TextSpan(
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 16,
+                        ),
+                        text:
+                            '< Aprimoramento Requerido / Bonus de Failstack >',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Container(
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.only(
+                        left: 60,
+                        right: 20,
+                      ),
+                      width: 100,
+                      height: 60,
+                      decoration: BoxDecoration(
+                        color: Colors.black.withOpacity(0.1),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(40),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          DropdownButton<String>(
+                            value: arrFails.first,
+                            icon: Icon(
+                              Icons.arrow_downward,
+                              color: Colors.black,
+                            ),
+                            iconSize: 24,
+                            elevation: 16,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w400,
+                            ),
+                            // underline: Container(
+                            //   height: 2,
+                            //   color: Colors.black,
+                            // ),
+                            onChanged: (String newValue) {
+                              setState(() {
+                                _fsSelected = newValue;
+                              });
+                            },
+                            items: arrFails.map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                          ),
+                        ],
+                      ),
+                    ),
+                    InputContainer(
+                      fsCtrl: _failStackCtrl,
+                    ),
                     SizedBox(
                       height: 30,
                     )
@@ -88,50 +139,68 @@ class _ArmorPageState extends State<ArmorPage> {
                 ),
               ),
               SizedBox(
-                height: 30,
+                height: 40,
               ),
               Button(
                 text: "Calculate",
                 formKey: _formKey,
                 func: _calculate,
-              )
+              ),
+              SizedBox(
+                height: 60,
+              ),
+              Container(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    RichText(
+                      key: _keyPercent,
+                      text: TextSpan(
+                        style: TextStyle(
+                          fontSize: 110,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black,
+                        ),
+                        text: percent,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),
       ),
     );
   }
+
+  void _calculate() {
+    var arrSelected = [''];
+
+    if (_fsSelected.toUpperCase() == '+6') arrSelected = Armor().arrSix;
+    if (_fsSelected.toUpperCase() == '+7') arrSelected = Armor().arrSeven;
+    if (_fsSelected.toUpperCase() == '+8') arrSelected = Armor().arrEight;
+    if (_fsSelected.toUpperCase() == '+9') arrSelected = Armor().arrNine;
+    if (_fsSelected.toUpperCase() == '+10') arrSelected = Armor().arrTen;
+    if (_fsSelected.toUpperCase() == '+11') arrSelected = Armor().arrEleven;
+    if (_fsSelected.toUpperCase() == '+12') arrSelected = Armor().arrTwelve;
+    if (_fsSelected.toUpperCase() == '+13') arrSelected = Armor().arrThirteen;
+    if (_fsSelected.toUpperCase() == '+14') arrSelected = Armor().arrFourteen;
+    if (_fsSelected.toUpperCase() == '+15') arrSelected = Armor().arrFifteen;
+    if (_fsSelected.toUpperCase() == 'PRI') arrSelected = Armor().arrPri;
+    if (_fsSelected.toUpperCase() == 'DUO') arrSelected = Armor().arrDuo;
+    if (_fsSelected.toUpperCase() == 'TRI') arrSelected = Armor().arrTri;
+    if (_fsSelected.toUpperCase() == 'TET') arrSelected = Armor().arrTet;
+    if (_fsSelected.toUpperCase() == 'PEN') arrSelected = Armor().arrPen;
+
+    setState(() {
+      var index =
+          _failStackCtrl.text.isNotEmpty ? int.parse(_failStackCtrl.text) : 0;
+      if (index == 0) return percent = arrSelected.first;
+      if (index > arrSelected.length + 1)
+        percent = arrSelected.last;
+      else
+        percent = arrSelected[index];
+    });
+  }
 }
-
-Function _calculate() {}
-
-// String _switchMoreThanFifteen(int i) {
-//   switch (i) {
-//     case 16:
-//       return 'PRI';
-//     case 17:
-//       return 'DUO';
-//     case 18:
-//       return 'TRI';
-//     case 19:
-//       return 'TET';
-//     case 20:
-//       return 'PEN';
-//     default:
-//       return '+$i';
-//   }
-// }
-//     // var radioButtons = <Widget>[];
-//     // for (int i = 6; i < 14; i++) {
-//     //   radioButtons.add(ListTile(
-//     //     title: Text(_switchMoreThanFifteen(i)),
-//     //     leading: Radio(
-//     //       value: i,
-//     //       groupValue: selectedRadio,
-//     //       activeColor: Colors.green,
-//     //       onChanged: (val) {
-//     //         setSelectedRadio(val);
-//     //       },
-//     //     ),
-//     //   ));
-//     // }

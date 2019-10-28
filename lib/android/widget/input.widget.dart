@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_masked_text/flutter_masked_text.dart';
 
 class Input extends StatelessWidget {
   var inputType = TextInputType.text;
   var labelText = "Input";
-
-  Input({
-    @required this.inputType,
-    @required this.labelText,
-  });
+  var ctrl = MaskedTextController(mask: '000');
+  Input(
+      {@required this.inputType,
+      @required this.labelText,
+      @required this.ctrl});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       child: TextFormField(
+        controller: ctrl,
         keyboardType: inputType,
         decoration: InputDecoration(
           labelText: labelText,
@@ -24,10 +26,10 @@ class Input extends StatelessWidget {
           border: InputBorder.none,
         ),
         style: TextStyle(
-          color: Colors.white,
+          color: Colors.black,
         ),
       ),
-      width: 70,
+      width: 140,
       height: 100,
     );
   }
