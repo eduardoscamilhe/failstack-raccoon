@@ -18,7 +18,7 @@ class _AccessoryPageState extends State<AccessoryPage> {
   var percent = '0%';
   final _keyPercent = GlobalKey<FormState>();
   var arrFails = ['PRI', 'DUO', 'TRI', 'TET', 'PEN'];
-  String _fsSelected = '';
+  String _fsSelected = 'PRI';
 
   var _failStackCtrl = new MaskedTextController(mask: '000');
 
@@ -85,7 +85,7 @@ class _AccessoryPageState extends State<AccessoryPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           DropdownButton<String>(
-                            value: arrFails.first,
+                            value: _fsSelected,
                             icon: Icon(
                               Icons.arrow_downward,
                               color: Colors.black,
@@ -94,6 +94,7 @@ class _AccessoryPageState extends State<AccessoryPage> {
                             elevation: 16,
                             style: TextStyle(
                               color: Colors.black,
+                              fontSize: 26,
                               fontWeight: FontWeight.w400,
                             ),
                             // underline: Container(
@@ -162,11 +163,16 @@ class _AccessoryPageState extends State<AccessoryPage> {
 
   void _calculate() {
     var arrSelected = [''];
-    if (_fsSelected.toUpperCase() == 'PRI') arrSelected = Accessory().arrPri;
-    if (_fsSelected.toUpperCase() == 'DUO') arrSelected = Accessory().arrDuo;
-    if (_fsSelected.toUpperCase() == 'TRI') arrSelected = Accessory().arrTri;
-    if (_fsSelected.toUpperCase() == 'TET') arrSelected = Accessory().arrTet;
-    if (_fsSelected.toUpperCase() == 'PEN') arrSelected = Accessory().arrPen;
+    if (_fsSelected.toUpperCase() == arrFails[0])
+      arrSelected = Accessory().arrPri;
+    if (_fsSelected.toUpperCase() == arrFails[1])
+      arrSelected = Accessory().arrDuo;
+    if (_fsSelected.toUpperCase() == arrFails[2])
+      arrSelected = Accessory().arrTri;
+    if (_fsSelected.toUpperCase() == arrFails[3])
+      arrSelected = Accessory().arrTet;
+    if (_fsSelected.toUpperCase() == arrFails[4])
+      arrSelected = Accessory().arrPen;
 
     setState(() {
       var index =

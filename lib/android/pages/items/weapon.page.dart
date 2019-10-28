@@ -15,18 +15,18 @@ class WeaponPage extends StatefulWidget {
 
 class _WeaponPageState extends State<WeaponPage> {
   final _formKey = GlobalKey<FormState>();
-  String _fsSelected = '+8';
+  String _fsSelected = '+ 8';
   var percent = '0%';
   final _keyPercent = GlobalKey<FormState>();
   var arrFails = [
-    '+8',
-    '+9',
-    '+10',
-    '+11',
-    '+12',
-    '+13',
-    '+14',
-    '+15',
+    '+ 8',
+    '+ 9',
+    '+ 10',
+    '+ 11',
+    '+ 12',
+    '+ 13',
+    '+ 14',
+    '+ 15',
     'PRI',
     'DUO',
     'TRI',
@@ -98,7 +98,7 @@ class _WeaponPageState extends State<WeaponPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           DropdownButton<String>(
-                            value: arrFails.first,
+                            value: _fsSelected,
                             icon: Icon(
                               Icons.arrow_downward,
                               color: Colors.black,
@@ -176,19 +176,29 @@ class _WeaponPageState extends State<WeaponPage> {
 
   void _calculate() {
     var arrSelected = [''];
-    if (_fsSelected.toUpperCase() == '+8') arrSelected = Weapon().arrEight;
-    if (_fsSelected.toUpperCase() == '+9') arrSelected = Weapon().arrNine;
-    if (_fsSelected.toUpperCase() == '+10') arrSelected = Weapon().arrTen;
-    if (_fsSelected.toUpperCase() == '+11') arrSelected = Weapon().arrEleven;
-    if (_fsSelected.toUpperCase() == '+12') arrSelected = Weapon().arrTwelve;
-    if (_fsSelected.toUpperCase() == '+13') arrSelected = Weapon().arrThirteen;
-    if (_fsSelected.toUpperCase() == '+14') arrSelected = Weapon().arrFourteen;
-    if (_fsSelected.toUpperCase() == '+15') arrSelected = Weapon().arrFifteen;
-    if (_fsSelected.toUpperCase() == 'PRI') arrSelected = Weapon().arrPri;
-    if (_fsSelected.toUpperCase() == 'DUO') arrSelected = Weapon().arrDuo;
-    if (_fsSelected.toUpperCase() == 'TRI') arrSelected = Weapon().arrTri;
-    if (_fsSelected.toUpperCase() == 'TET') arrSelected = Weapon().arrTet;
-    if (_fsSelected.toUpperCase() == 'PEN') arrSelected = Weapon().arrPen;
+    if (_fsSelected.toUpperCase() == arrFails[0])
+      arrSelected = Weapon().arrEight;
+    if (_fsSelected.toUpperCase() == arrFails[1])
+      arrSelected = Weapon().arrNine;
+    if (_fsSelected.toUpperCase() == arrFails[2]) arrSelected = Weapon().arrTen;
+    if (_fsSelected.toUpperCase() == arrFails[3])
+      arrSelected = Weapon().arrEleven;
+    if (_fsSelected.toUpperCase() == arrFails[4])
+      arrSelected = Weapon().arrTwelve;
+    if (_fsSelected.toUpperCase() == arrFails[5])
+      arrSelected = Weapon().arrThirteen;
+    if (_fsSelected.toUpperCase() == arrFails[6])
+      arrSelected = Weapon().arrFourteen;
+    if (_fsSelected.toUpperCase() == arrFails[7])
+      arrSelected = Weapon().arrFifteen;
+    if (_fsSelected.toUpperCase() == arrFails[8]) arrSelected = Weapon().arrPri;
+    if (_fsSelected.toUpperCase() == arrFails[9]) arrSelected = Weapon().arrDuo;
+    if (_fsSelected.toUpperCase() == arrFails[10])
+      arrSelected = Weapon().arrTri;
+    if (_fsSelected.toUpperCase() == arrFails[11])
+      arrSelected = Weapon().arrTet;
+    if (_fsSelected.toUpperCase() == arrFails[12])
+      arrSelected = Weapon().arrPen;
 
     setState(() {
       var index =

@@ -15,7 +15,7 @@ class LifePage extends StatefulWidget {
 
 class _LifePageState extends State<LifePage> {
   final _formKey = GlobalKey<FormState>();
-  String _fsSelected = '+1';
+  String _fsSelected = '+ 1';
   var percent = '0%';
   final _keyPercent = GlobalKey<FormState>();
   var arrFails = [
@@ -90,7 +90,7 @@ class _LifePageState extends State<LifePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           DropdownButton<String>(
-                            value: arrFails.first,
+                            value: _fsSelected,
                             icon: Icon(
                               Icons.arrow_downward,
                               color: Colors.black,
@@ -99,12 +99,12 @@ class _LifePageState extends State<LifePage> {
                             elevation: 16,
                             style: TextStyle(
                               color: Colors.black,
+                              fontSize: 26,
                               fontWeight: FontWeight.w400,
                             ),
-                            // underline: Container(
-                            //   height: 2,
-                            //   color: Colors.black,
-                            // ),
+                            underline: Container(
+                              height: 0,
+                            ),
                             onChanged: (String newValue) {
                               setState(() {
                                 _fsSelected = newValue;
@@ -168,11 +168,11 @@ class _LifePageState extends State<LifePage> {
   void _calculate() {
     var arrSelected = [''];
 
-    if (_fsSelected.toUpperCase() == '+1') arrSelected = Life().arrOne;
-    if (_fsSelected.toUpperCase() == '+2') arrSelected = Life().arrTwo;
-    if (_fsSelected.toUpperCase() == '+3') arrSelected = Life().arrTree;
-    if (_fsSelected.toUpperCase() == '+4') arrSelected = Life().arrFour;
-    if (_fsSelected.toUpperCase() == '+4') arrSelected = Life().arrFive;
+    if (_fsSelected.toUpperCase() == arrFails[0]) arrSelected = Life().arrOne;
+    if (_fsSelected.toUpperCase() == arrFails[1]) arrSelected = Life().arrTwo;
+    if (_fsSelected.toUpperCase() == arrFails[2]) arrSelected = Life().arrTree;
+    if (_fsSelected.toUpperCase() == arrFails[3]) arrSelected = Life().arrFour;
+    if (_fsSelected.toUpperCase() == arrFails[4]) arrSelected = Life().arrFive;
 
     setState(() {
       var index =

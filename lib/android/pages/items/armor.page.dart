@@ -14,7 +14,7 @@ class ArmorPage extends StatefulWidget {
 
 class _ArmorPageState extends State<ArmorPage> {
   final _formKey = GlobalKey<FormState>();
-  String _fsSelected = '+6';
+  String _fsSelected = '+ 6';
   var percent = '0%';
   final _keyPercent = GlobalKey<FormState>();
   var arrFails = [
@@ -99,7 +99,7 @@ class _ArmorPageState extends State<ArmorPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           DropdownButton<String>(
-                            value: arrFails.first,
+                            value: _fsSelected,
                             icon: Icon(
                               Icons.arrow_downward,
                               color: Colors.black,
@@ -108,6 +108,7 @@ class _ArmorPageState extends State<ArmorPage> {
                             elevation: 16,
                             style: TextStyle(
                               color: Colors.black,
+                              fontSize: 26,
                               fontWeight: FontWeight.w400,
                             ),
                             // underline: Container(
@@ -177,21 +178,28 @@ class _ArmorPageState extends State<ArmorPage> {
   void _calculate() {
     var arrSelected = [''];
 
-    if (_fsSelected.toUpperCase() == '+6') arrSelected = Armor().arrSix;
-    if (_fsSelected.toUpperCase() == '+7') arrSelected = Armor().arrSeven;
-    if (_fsSelected.toUpperCase() == '+8') arrSelected = Armor().arrEight;
-    if (_fsSelected.toUpperCase() == '+9') arrSelected = Armor().arrNine;
-    if (_fsSelected.toUpperCase() == '+10') arrSelected = Armor().arrTen;
-    if (_fsSelected.toUpperCase() == '+11') arrSelected = Armor().arrEleven;
-    if (_fsSelected.toUpperCase() == '+12') arrSelected = Armor().arrTwelve;
-    if (_fsSelected.toUpperCase() == '+13') arrSelected = Armor().arrThirteen;
-    if (_fsSelected.toUpperCase() == '+14') arrSelected = Armor().arrFourteen;
-    if (_fsSelected.toUpperCase() == '+15') arrSelected = Armor().arrFifteen;
-    if (_fsSelected.toUpperCase() == 'PRI') arrSelected = Armor().arrPri;
-    if (_fsSelected.toUpperCase() == 'DUO') arrSelected = Armor().arrDuo;
-    if (_fsSelected.toUpperCase() == 'TRI') arrSelected = Armor().arrTri;
-    if (_fsSelected.toUpperCase() == 'TET') arrSelected = Armor().arrTet;
-    if (_fsSelected.toUpperCase() == 'PEN') arrSelected = Armor().arrPen;
+    if (_fsSelected.toUpperCase() == arrFails[0]) arrSelected = Armor().arrSix;
+    if (_fsSelected.toUpperCase() == arrFails[1])
+      arrSelected = Armor().arrSeven;
+    if (_fsSelected.toUpperCase() == arrFails[2])
+      arrSelected = Armor().arrEight;
+    if (_fsSelected.toUpperCase() == arrFails[3]) arrSelected = Armor().arrNine;
+    if (_fsSelected.toUpperCase() == arrFails[4]) arrSelected = Armor().arrTen;
+    if (_fsSelected.toUpperCase() == arrFails[5])
+      arrSelected = Armor().arrEleven;
+    if (_fsSelected.toUpperCase() == arrFails[6])
+      arrSelected = Armor().arrTwelve;
+    if (_fsSelected.toUpperCase() == arrFails[7])
+      arrSelected = Armor().arrThirteen;
+    if (_fsSelected.toUpperCase() == arrFails[8])
+      arrSelected = Armor().arrFourteen;
+    if (_fsSelected.toUpperCase() == arrFails[9])
+      arrSelected = Armor().arrFifteen;
+    if (_fsSelected.toUpperCase() == arrFails[10]) arrSelected = Armor().arrPri;
+    if (_fsSelected.toUpperCase() == arrFails[11]) arrSelected = Armor().arrDuo;
+    if (_fsSelected.toUpperCase() == arrFails[12]) arrSelected = Armor().arrTri;
+    if (_fsSelected.toUpperCase() == arrFails[13]) arrSelected = Armor().arrTet;
+    if (_fsSelected.toUpperCase() == arrFails[14]) arrSelected = Armor().arrPen;
 
     setState(() {
       var index =
